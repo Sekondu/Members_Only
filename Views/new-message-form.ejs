@@ -1,0 +1,11 @@
+<html>
+    <body>
+        <% if(errors) {%>
+            <p><%=errors%></p>
+        <%} %> 
+        <form action="/new-message" method="post">
+            <textarea name="content" id="" placeholder="Write the message here!"></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+</html>

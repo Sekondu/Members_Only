@@ -1,0 +1,59 @@
+<html>
+    <body>
+        <% if(user){ %>
+            <% if(messages.length>0){ %>
+              <ol>
+                <% messages.forEach(message => { %>
+                    <li>
+                    <p><%= message.content%></p>
+                    <p><%=message.hours%></p>
+                    <p><%=message.date_in%></p>
+                    <p>Written by : <%=message.author%></p>
+                    <% if(user.admin) {%><a href="/delete?id=<%=message.id%>">Delete Message</a><%} %>
+                    </li>
+                <%}) %>
+              </ol>
+              <button><a href="/new-message">Create Message</a></button>  
+              <button><a href="/logout">LogOut</a></button>
+            <%} else{ %>
+                <h1>No messages written yet!</h1>
+                <button><a href="/new-message">Create Message</a></button>
+                <button><a href="/logout">LogOut</a></button> 
+            <%} %>
+            <% if(user.member==false) { %>
+            <div>
+            <p><strong>Not a Member?</strong></p>
+            <button><a href="/Join">Join the Club</a></button>
+            </div>
+        <%} else { %>
+            <p><strong>Already a Member!</strong></p>
+        <%} %>
+        <% if(user.admin==false) { %>
+            <div>
+                <p><strong>Currently in user mode!</strong></p>
+                <button><a href="/admin">Become Admin!</a></button>
+            </div>
+        <%} %>
+        <%} 
+        else { %>
+                        <% if(messages.length>0){ %>
+              <ol>
+                <% messages.forEach(message => { %>
+                    <li>
+                    <p><%= message.content%></p>
+                    <p><%=message.hours%></p>
+                    </li>
+                <%}) %>
+                <button><a href="/login">LogIn</a></button>
+                <button><a href="/signup">SignUp</a></button> 
+              </ol> 
+            <%} else{ %>
+                <h1>No messages written yet!</h1>
+                <button><a href="/login">LogIn</a></button>
+                <button><a href="/signup">SignUp</a></button>  
+            <%} %>
+        <%} %>
+        <div>
+        </div>
+    </body>
+</html>
